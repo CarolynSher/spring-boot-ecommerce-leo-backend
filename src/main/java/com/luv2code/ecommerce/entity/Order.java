@@ -1,7 +1,5 @@
 package com.luv2code.ecommerce.entity;
 
-import lombok.Getter;
-import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -13,8 +11,6 @@ import java.util.Set;
 
 @Entity
 @Table(name="orders")
-@Getter
-@Setter
 public class Order {
 
     @Id
@@ -22,51 +18,68 @@ public class Order {
     @Column(name="id")
     private Long id;
 
-    @Column(name="order_tracking_number")
-    private String orderTrackingNumber;
-
-    @Column(name="total_quantity")
-    private int totalQuantity;
+    @ManyToOne
+    @JoinColumn(name="user_id")
+    private User user;
 
     @Column(name="total_price")
-    private BigDecimal totalPrice;
+    private BigDecimal total_price;
 
-    @Column(name="status")
-    private String status;
-
-    @Column(name="date_created")
+    @Column(name="created_at")
     @CreationTimestamp
-    private Date dateCreated;
-
-    @Column(name="last_updated")
-    @UpdateTimestamp
-    private Date lastUpdated;
-
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "order")
-    private Set<OrderItem> orderItems = new HashSet<>();
+    private Date created_at;
 
     @ManyToOne
-    @JoinColumn(name = "customer_id")
-    private Customer customer;
+    @JoinColumn(name="order_detail_id")
+    private OrderDetail orderDetail;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "shipping_address_id", referencedColumnName = "id")
-    private Address shippingAddress;
+    public Order() {
+    }
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "billing_address_id", referencedColumnName = "id")
-    private Address billingAddress;
+    public Order(Long id, User user, BigDecimal total_price) {
+        this.id = id;
+        this.user = user;
+        this.total_price = total_price;
+    }
 
-    public void add(OrderItem item) {
+    public Long getId() {
+        return id;
+    }
 
-        if (item != null) {
-            if (orderItems == null) {
-                orderItems = new HashSet<>();
-            }
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-            orderItems.add(item);
-            item.setOrder(this);
-        }
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public BigDecimal getTotal_price() {
+        return total_price;
+    }
+
+    public void setTotal_price(OrderDetail orderDetail) {
+        this.total_price = orderDetail.totalPrice();
+    }
+
+    public Date getCreated_at() {
+        return created_at;
+    }
+
+    public void setCreated_at(Date created_at) {
+        this.created_at = created_at;
+    }
+
+    public OrderDetail getOrderDetail() {
+        return orderDetail;
+    }
+
+    public void setOrderDetail(OrderDetail orderDetail) {
+        this.orderDetail = orderDetail;
     }
 }
 

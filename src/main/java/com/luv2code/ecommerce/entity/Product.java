@@ -9,8 +9,7 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 @Entity
-@Table(name="product")
-@Data
+@Table(name="products")
 public class Product {
 
     @Id
@@ -18,36 +17,78 @@ public class Product {
     @Column(name = "id")
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "category_id", nullable = false)
-    private ProductCategory category;
-
-    @Column(name = "sku")
-    private String sku;
-
-    @Column(name = "name")
+    @Column(name="name")
     private String name;
 
-    @Column(name = "description")
+    @Column(name="description")
     private String description;
 
-    @Column(name = "unit_price")
-    private BigDecimal unitPrice;
+    @Column(name="price")
+    private BigDecimal price;
 
-    @Column(name = "image_url")
-    private String imageUrl;
+    @Column(name="image_url")
+    private String image_url;
 
-    @Column(name = "active")
-    private boolean active;
-
-    @Column(name = "units_in_stock")
-    private int unitsInStock;
-
-    @Column(name = "date_created")
+    @Column(name="created_at")
     @CreationTimestamp
-    private Date dateCreated;
+    private Date created_at;
 
-    @Column(name = "last_updated")
-    @UpdateTimestamp
-    private Date lastUpdated;
+    public Product() {
+    }
+
+    public Product(Long id, String name, String description, BigDecimal price, String image_url) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.price = price;
+        this.image_url = image_url;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    public void setPrice(BigDecimal price) {
+        this.price = price;
+    }
+
+    public String getImage_url() {
+        return image_url;
+    }
+
+    public void setImage_url(String image_url) {
+        this.image_url = image_url;
+    }
+
+    public Date getCreated_at() {
+        return created_at;
+    }
+
+    public void setCreated_at(Date created_at) {
+        this.created_at = created_at;
+    }
 }

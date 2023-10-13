@@ -1,0 +1,22 @@
+version: '3'
+services:
+  db:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: leo-mysql-container
+    environment:
+      MYSQL_ROOT_PASSWORD: mysecretpassword
+      MYSQL_DATABASE: leo_db
+      MYSQL_USER: leo_user
+      MYSQL_PASSWORD: leo_password
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./setup.sql:/docker-entrypoint-initdb.d/setup.sql
+      - ./leo_db_setup.sql:/docker-entrypoint-initdb.d/leo_db_setup.sql
+
+
+volumes:
+  db_data:
