@@ -44,6 +44,13 @@ public class Product {
         this.image_url = image_url;
     }
 
+    public Product(String name, String description, BigDecimal price, String image_url) {
+        this.name = name;
+        this.description = description;
+        this.price = price;
+        this.image_url = image_url;
+    }
+
     public Long getId() {
         return id;
     }
