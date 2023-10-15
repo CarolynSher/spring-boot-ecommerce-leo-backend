@@ -33,6 +33,10 @@ public class Product {
     @CreationTimestamp
     private Date created_at;
 
+    @ManyToOne
+    @JoinColumn(name="category_id")
+    private ProductCategory productCategory;
+
     public Product() {
     }
 

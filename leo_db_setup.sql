@@ -55,5 +55,4 @@ INSERT INTO users (username, password, email) VALUES ('leoUser1', 'password1', '
 INSERT INTO users (username, password, email) VALUES ('leoUser2', 'password2', 'leoUser2@example.com');
 
 -- Inserting sample products (Mtungas)
-INSERT INTO products (name, description, price, image_url) VALUES ('Mtunga1', 'Description for Mtunga1', 100.00, 'url_to_image1');
-INSERT INTO products (name, description, price, image_url) VALUES ('Mtunga2', 'Description for Mtunga2', 150.00, 'url_to_image2');
+INSERT INTO products (name, description, price, image_url) VALUES ('Mtunga1', 'Description for Mtunga1', 100.00, 'assets/images/products/water_bottle.jpeg');
